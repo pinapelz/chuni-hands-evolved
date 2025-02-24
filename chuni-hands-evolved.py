@@ -120,10 +120,6 @@ def setup_gui(camera_width: int, camera_height: int, preview_width: int, preview
     update_rate_spinbox = tk.Spinbox(camera_frame, from_=1, to=100, textvariable=update_rate, width=5)
     update_rate_spinbox.pack(side="left", padx=5)
 
-    tk.Label(camera_frame,
-             text="Set a high update rate (e.g. 100) while editing, then a lower value (e.g. 5) for normal use.",
-             font=style["label_font"], bg=style["frame_bg"]).pack(side="top", pady=(0, style["padding"]))
-
     # Position and spacing controls
     controls_frame = tk.Frame(main_container, bg=style["frame_bg"], relief="ridge", bd=2, padx=10, pady=10)
     controls_frame.pack(fill="x", pady=(0, style["padding"]))
@@ -335,7 +331,7 @@ def update_canvas():
         video_canvas.delete("all")
         video_canvas.create_image(canvas_width//2, canvas_height//2, anchor="center", image=img)
         video_canvas.image = img
-    root.after(33, update_canvas)  # refresh UI at ~30 FPS
+    root.after(60, update_canvas)  # refresh UI at ~60 FPS
 
 def load_config() -> dict:
     try:
